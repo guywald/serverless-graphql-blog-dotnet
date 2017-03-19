@@ -1,0 +1,9 @@
+{
+  "name": "serverless-graphql-blog-dotnet-nodejs",
+  "description": "Serverless GraphQL Blog C# Dot Net and NodeJS Example",
+  "author": "Guy Wald",
+  "license": "MIT",
+  "dependencies": {
+    
+  }
+}

@@ -21,8 +21,8 @@ provider:
       - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_AUTHORS_TABLE}"
       - "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_COMMENTS_TABLE}"
 
-package:
-  artifact: bin/release/netcoreapp1.0/publish/deploy-package.zip
+# package:
+#   artifact: bin/release/netcoreapp1.0/publish/deploy-package.zip
 
   #exclude NodeJS files from C# build
   exclude:
@@ -30,25 +30,28 @@ package:
       - graphql_handler.js
 
 functions:
-  hello:
-    handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
-    runtime: dotnetcore1.0
-    events:
-      - http:
-        path: hello
-        method: post
-        cors: true
-        integration: lambda-proxy
+  # hello:
+  #   handler: CsharpHandlers::AwsDotnetCsharp.Handler::Hello
+  #   runtime: dotnetcore1.0
+  #   events:
+  #     - http:
+  #       path: hello
+  #       method: post
+  #       cors: true
+  #       integration: lambda-proxy
+  #       requestParameters: {}
+  #       requestTemplates:
+  #         application/json: '{"query" : $input.json("$")}'
 
   graphql:
     handler: graphql_handler.graphql
     runtime: nodejs4.3
     events:
       - http:
-        path: graphql
-        method: post
-        cors: true
-        integration: lambda-proxy
+          path: graphql
+          method: post
+          cors: true
+          integration: lambda-proxy
 
 resources:
   Resources:

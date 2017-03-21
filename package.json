@@ -4,6 +4,7 @@
   "author": "Guy Wald",
   "license": "MIT",
   "dependencies": {
-    "graphql": "^0.9.1"
+    "graphql": "^0.9.1",
+    "graphql-custom-types": "^0.7.1"
   }
 }

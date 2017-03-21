@@ -1,6 +1,8 @@
 /* eslint-disable */
 'use strict';
 
+var graphql = require("graphql");
+
 module.exports.graphql = (event, context, callback) => {
 
   const jsonBody = {

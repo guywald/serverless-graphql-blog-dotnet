@@ -12,7 +12,10 @@
     "Amazon.Lambda.Core": "1.0.0*",
     "Amazon.Lambda.Serialization.Json": "1.0.0",
     "Amazon.Lambda.Tools": "1.3.0-preview1",
-    "Amazon.Lambda.APIGatewayEvents": "1.0.2"
+    "Amazon.Lambda.APIGatewayEvents": "1.0.2",
+    "GraphQL-Parser": "2.0.0",
+    "GraphQL": "0.15.1.678",
+    "AWSSDK.DynamoDBv2": "3.3.4.3"
   },
   "tools": {
     "Amazon.Lambda.Tools": "1.3.0-preview1"

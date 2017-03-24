@@ -1,4 +1,4 @@
-service: serverless-graphql-blog-dotnet-nodejs
+service: serverless-graphql-blog-dotnet
 
 frameworkVersion: ">=1.9.0"
 

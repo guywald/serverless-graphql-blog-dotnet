@@ -1,4 +1,4 @@
-service: sserverless-graphql-blog-dotnet-nodejs
+service: serverless-graphql-blog-dotnet-nodejs
 
 frameworkVersion: ">=1.9.0"
 
@@ -27,13 +27,8 @@ provider:
     - logs:PutLogEvents
     Resource: arn:aws:logs:${self:provider.region}:*:*      
 
-# package:
-#   artifact: bin/release/netcoreapp1.0/publish/deploy-package.zip
-
-  #exclude NodeJS files from C# build
-  exclude:
-    handler: graphql_handler.graphql
-      - graphql_handler.js
+package:
+  artifact: bin/release/netcoreapp1.0/publish/deploy-package.zip
 
 functions:
   graphql-dotnet:
@@ -41,32 +36,16 @@ functions:
     runtime: dotnetcore1.0
     events:
       - http:
-        path: graphql
-        method: post
-        cors: true
-        integration: lambda-proxy
-        request:
-          template:
-            application/json: '{"query" : $input.json("$")'
-
-  graphql:
-    handler: graphql_handler.graphql
-    runtime: nodejs4.3
-    events:
-      - http:
-          path: graphqljs
+          path: graphql
           method: post
-          cors: true
           integration: lambda-proxy
-          request:
-            template:
-              application/json: '{"query" : $input.json("$")'
+          # cors: true
 
 resources:
   Resources:
-    BlogPostsDynamoDbTable:
+    BlogPostsDynamo:
       Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Retain
+      DeletionPolicy: Delete
       Properties:
         AttributeDefinitions:
           -
@@ -81,9 +60,9 @@ resources:
           WriteCapacityUnits: 1
         TableName: ${self:provider.environment.DYNAMODB_POSTS_TABLE}
 
-    BlogAuthorsDynamoDbTable:
+    BlogAuthorsDynamo:
       Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Retain
+      DeletionPolicy: Delete
       Properties:
         AttributeDefinitions:
           -
@@ -98,9 +77,9 @@ resources:
           WriteCapacityUnits: 1
         TableName: ${self:provider.environment.DYNAMODB_AUTHORS_TABLE}
 
-    BlogPostCommentsDynamoDbTable:
+    BlogPostCommentsDynamo:
       Type: 'AWS::DynamoDB::Table'
-      DeletionPolicy: Retain
+      DeletionPolicy: Delete
       Properties:
         AttributeDefinitions:
           -
